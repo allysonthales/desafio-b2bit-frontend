@@ -1,0 +1,11 @@
+services:
+  b2-devcontainer:
+    image: b2-devcontainer
+    container_name: b2-devcontainer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspaces/b2:cached
+    network_mode: "host"
+    command: sleep infinity

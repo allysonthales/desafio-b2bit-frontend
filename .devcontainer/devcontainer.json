@@ -1,0 +1,16 @@
+{
+    "name": "React Dev Container - B2Bit",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "b2-devcontainer",
+    "workspaceFolder": "/workspaces/b2",
+    // "remoteUser": "root",
+    "postCreateCommand": "echo 'source $NVM_DIR/nvm.sh' >> ~/.bashrc && git config --global --add safe.directory /workspaces/b2",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "biomejs.biome",
+                "bradlc.vscode-tailwindcss"
+            ]
+        }
+    }
+}
