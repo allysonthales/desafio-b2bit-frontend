@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
 	Form,
 	FormControl,
@@ -11,32 +10,36 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
+import { loginFormSchema, type LoginFormValues } from "@/types/forms/login";
 
-const formSchema = z.object({
-	email: z
-		.string()
-		.min(2, { message: "O nome de usuário deve ter pelo menos 2 caracteres" })
-		.max(50, { message: "O nome de usuário deve ter no máximo 50 caracteres" }),
-	password: z
-		.string()
-		.min(6, { message: "A senha deve ter no mínimo 6 caracteres" }),
-});
+interface LoginFormProps {
+	onSubmit: (email: string, password: string) => void;
+}
 
-export function LoginForm() {
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+export function LoginForm({ onSubmit }: LoginFormProps) {
+	const [showPassword, setShowPassword] = useState(false);
+	const form = useForm<LoginFormValues>({
+		resolver: zodResolver(loginFormSchema),
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 	});
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		console.log(values);
+	function handleShowPassword() {
+		setShowPassword(!showPassword);
 	}
+
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+			<form
+				onSubmit={form.handleSubmit((values) =>
+					onSubmit(values.email, values.password),
+				)}
+				className="space-y-8"
+			>
 				<FormField
 					control={form.control}
 					name="email"
@@ -54,16 +57,31 @@ export function LoginForm() {
 					name="password"
 					control={form.control}
 					render={({ field }) => (
-						<FormItem>
+						<FormItem className="relative">
 							<FormLabel>Password</FormLabel>
 							<FormControl>
-								<Input placeholder="***************" {...field} />
+								<Input
+									placeholder="***************"
+									{...field}
+									type={showPassword ? "text" : "password"}
+								/>
 							</FormControl>
+							<button
+								className="absolute right-3 top-1/2  text-gray-500 cursor-pointer p-2 "
+								type="button"
+								onClick={handleShowPassword}
+							>
+								{showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+							</button>
+
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
-				<Button className="w-full py-8 bg-primary text-xl mt-2" type="submit">
+				<Button
+					className="w-full py-8 bg-primary text-xl mt-2 cursor-pointer"
+					type="submit"
+				>
 					Sing In
 				</Button>
 			</form>
