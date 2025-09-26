@@ -9,11 +9,7 @@ const container = document.getElementById("root");
 if (container) {
 	createRoot(container).render(
 		<StrictMode>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<App />} />
-				</Routes>
-			</BrowserRouter>
+			<App />
 		</StrictMode>,
 	);
 } else {
