@@ -12,29 +12,28 @@ export function useAuth() {
 		setError(null);
 		setLoading(true);
 
-		const minLoading = new Promise((resolve) => setTimeout(resolve, 3000));
-		const apiRequest = login(email, password);
+		const minLoading = new Promise((resolve) => setTimeout(resolve, 2000));
 
 		try {
-			const [data] = await Promise.all([apiRequest, minLoading]);
+			const data = await login(email, password);
+			await minLoading;
 			setToken(data.tokens.access);
+			setLoading(false);
 			navigate("/profile");
 		} catch (err: unknown) {
-			if (err instanceof AxiosError) {
-				if (err.response?.status === 401) {
-					setError("Usuário ou senha inválidos.");
-				} else {
-					setError(
-						err.response?.data?.message || err.message || "Erro desconhecido",
-					);
-				}
+			await minLoading;
+			if (err instanceof AxiosError && err.response?.status === 401) {
+				setError("Usuário ou senha inválidos.");
+			} else if (err instanceof AxiosError) {
+				setError(
+					err.response?.data?.message || err.message || "Erro desconhecido",
+				);
 			} else {
 				setError("Erro desconhecido");
 			}
-		} finally {
 			setLoading(false);
 		}
 	}
 
-	return { handleLogin, error, loading, setLoading };
+	return { handleLogin, error, loading };
 }
