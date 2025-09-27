@@ -1,6 +1,6 @@
 import { getProfile } from "@/api/profile/api/profile";
 import { loadingTime } from "@/utils/minLoading";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
 import type { ProfileResponse } from "@/api/profile/domain/types";
@@ -11,7 +11,7 @@ export function useGetProfile() {
 	const [profile, setProfile] = useState<ProfileResponse | null>(null);
 	const navigate = useNavigate();
 
-	async function handleGetProfile() {
+	const handleGetProfile = useCallback(async () => {
 		setLoadingProfile(true);
 		setError(null);
 		const minLoading = loadingTime;
@@ -34,7 +34,7 @@ export function useGetProfile() {
 		} finally {
 			setLoadingProfile(false);
 		}
-	}
+	}, []);
 
 	return {
 		handleGetProfile,
