@@ -1,24 +1,26 @@
 import { useState } from "react";
-import { login, setToken } from "@/api/auth";
+import { login } from "@/api/auth/api/auth";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
+import { setToken } from "@/utils/token";
+import { loadingTime } from "@/utils/minLoading";
 
 export function useAuth() {
 	const [error, setError] = useState<string | null>(null);
 	const navigate = useNavigate();
-	const [loading, setLoading] = useState(false);
+	const [loadingAuth, setLoadingAuth] = useState(false);
 
 	async function handleLogin(email: string, password: string) {
 		setError(null);
-		setLoading(true);
+		setLoadingAuth(true);
 
-		const minLoading = new Promise((resolve) => setTimeout(resolve, 2000));
+		const minLoading = loadingTime;
 
 		try {
 			const data = await login(email, password);
 			await minLoading;
-			setToken(data.tokens.access);
-			setLoading(false);
+			setToken("token", data.tokens.access);
+			setLoadingAuth(false);
 			navigate("/profile");
 		} catch (err: unknown) {
 			await minLoading;
@@ -31,9 +33,9 @@ export function useAuth() {
 			} else {
 				setError("Erro desconhecido");
 			}
-			setLoading(false);
+			setLoadingAuth(false);
 		}
 	}
 
-	return { handleLogin, error, loading };
+	return { handleLogin, error, loadingAuth, setLoadingAuth };
 }
