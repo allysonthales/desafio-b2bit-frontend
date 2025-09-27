@@ -4,9 +4,34 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import logoImage from "../../assets/B2Bit Logo.png";
 import { Loading } from "@/components/Loading/Loading";
 import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
+import { getToken } from "@/utils/token";
+import { useGetProfile } from "@/hooks/useGetProfile";
+import { useNavigate } from "react-router";
+import { SkeletonLogin } from "@/components/Loading/SkeletonLogin";
 
 export default function Login() {
-	const { handleLogin, error, loading } = useAuth();
+	const { handleLogin, error, loadingAuth, setLoadingAuth } = useAuth();
+	const { handleGetProfile, loadingProfile, profile, setLoadingProfile } =
+		useGetProfile();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const token = getToken("token");
+		if (token) {
+			handleGetProfile();
+			console.log(profile);
+		}
+	}, [handleGetProfile, profile]);
+	useEffect(() => {
+		if (profile) {
+			navigate("/profile");
+		}
+	}, [profile, navigate]);
+
+	if (loadingProfile) {
+		return <SkeletonLogin />;
+	}
 
 	return (
 		<PageWrapper>
@@ -24,7 +49,9 @@ export default function Login() {
 					)}
 				</CardContent>
 			</Card>
-			{loading && <Loading open={loading} label="Entrando no sistema" />}
+			{loadingAuth && (
+				<Loading open={loadingAuth} label="Entrando no sistema" />
+			)}
 		</PageWrapper>
 	);
 }
