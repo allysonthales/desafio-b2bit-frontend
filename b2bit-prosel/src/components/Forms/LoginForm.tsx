@@ -16,9 +16,10 @@ import { loginFormSchema, type LoginFormValues } from "@/types/forms/login";
 
 interface LoginFormProps {
 	onSubmit: (email: string, password: string) => void;
+	onClick?: () => void;
 }
 
-export function LoginForm({ onSubmit }: LoginFormProps) {
+export function LoginForm({ onSubmit, onClick }: LoginFormProps) {
 	const [showPassword, setShowPassword] = useState(false);
 	const form = useForm<LoginFormValues>({
 		resolver: zodResolver(loginFormSchema),
@@ -81,6 +82,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
 				<Button
 					className="w-full py-8 bg-primary text-xl mt-2 cursor-pointer"
 					type="submit"
+					onClick={onClick}
 				>
 					Sing In
 				</Button>
