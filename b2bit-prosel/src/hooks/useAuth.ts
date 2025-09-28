@@ -14,25 +14,32 @@ export function useAuth() {
 		setError(null);
 		setLoadingAuth(true);
 
-		const minLoading = loadingTime;
-
 		try {
-			const data = await login(email, password);
-			await minLoading;
-			setToken("token", data.tokens.access);
-			setLoadingAuth(false);
-			navigate("/profile");
-		} catch (err: unknown) {
-			await minLoading;
-			if (err instanceof AxiosError && err.response?.status === 401) {
-				setError("Usuário ou senha inválidos.");
-			} else if (err instanceof AxiosError) {
-				setError(
-					err.response?.data?.message || err.message || "Erro desconhecido",
-				);
+			const [loginResult] = await Promise.allSettled([
+				login(email, password),
+				loadingTime(),
+			]);
+
+			if (loginResult.status === "fulfilled") {
+				const data = loginResult.value;
+				setToken("token", data.tokens.access);
+				navigate("/profile");
 			} else {
-				setError("Erro desconhecido");
+				const err = loginResult.reason;
+				if (err instanceof AxiosError && err.response?.status === 401) {
+					setError("Usuário ou senha inválidos.");
+				} else if (err instanceof AxiosError) {
+					setError(
+						err.response?.data?.message || err.message || "Erro desconhecido",
+					);
+				} else {
+					setError("Erro desconhecido");
+				}
 			}
+		} catch (err: unknown) {
+			console.error("Um erro inesperado ocorreu:", err);
+			setError("Ocorreu um erro inesperado. Tente novamente.");
+		} finally {
 			setLoadingAuth(false);
 		}
 	}
