@@ -8,7 +8,6 @@ import { Navigate } from "react-router";
 import { useGetProfile } from "@/hooks/useGetProfile";
 import type { ProfileProps } from "@/pages/Profile/Profile";
 import { getToken } from "@/utils/token";
-import { SkeletonLogin } from "../Loading/SkeletonLogin";
 import { SkeletonProfile } from "../Loading/SkeletonProfile";
 
 export default function ProtectedRoute({
