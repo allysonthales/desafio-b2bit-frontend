@@ -9,6 +9,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useGetProfile } from "@/hooks/useGetProfile";
 import { getToken } from "@/utils/token";
 import logoImage from "../../assets/B2Bit Logo.png";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Login() {
 	const { handleLogin, error, loadingAuth } = useAuth();
@@ -33,6 +34,9 @@ export default function Login() {
 
 	return (
 		<div className="container flex items-center justify-center min-h-screen mx-auto">
+			<div className="absolute top-4 right-4">
+				<ModeToggle />
+			</div>
 			<PageWrapper className="px-4">
 				<Card className="max-w-2xl shadow-2xl py-10 w-full">
 					<CardHeader>
