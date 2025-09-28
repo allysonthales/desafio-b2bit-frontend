@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { login } from "@/api/auth/api/auth";
-import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
-import { setToken } from "@/utils/token";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { login } from "@/api/auth/api/auth";
 import { loadingTime } from "@/utils/minLoading";
+import { setToken } from "@/utils/token";
 
 export function useAuth() {
 	const [error, setError] = useState<string | null>(null);

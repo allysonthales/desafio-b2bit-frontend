@@ -1,4 +1,3 @@
-import { Loader2 } from "lucide-react";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { B2BitLoadingAnimation } from "./B2bitLoading";
 

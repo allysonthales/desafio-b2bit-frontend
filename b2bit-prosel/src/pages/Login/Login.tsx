@@ -1,19 +1,18 @@
-import { LoginForm } from "@/components/Forms/LoginForm";
-import { PageWrapper } from "@/components/PageWrapper";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import logoImage from "../../assets/B2Bit Logo.png";
-import { Loading } from "@/components/Loading/Loading";
-import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
-import { getToken } from "@/utils/token";
-import { useGetProfile } from "@/hooks/useGetProfile";
 import { useNavigate } from "react-router";
+import { LoginForm } from "@/components/Forms/LoginForm";
+import { Loading } from "@/components/Loading/Loading";
 import { SkeletonLogin } from "@/components/Loading/SkeletonLogin";
+import { PageWrapper } from "@/components/PageWrapper";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/hooks/useAuth";
+import { useGetProfile } from "@/hooks/useGetProfile";
+import { getToken } from "@/utils/token";
+import logoImage from "../../assets/B2Bit Logo.png";
 
 export default function Login() {
-	const { handleLogin, error, loadingAuth, setLoadingAuth } = useAuth();
-	const { handleGetProfile, loadingProfile, profile, setLoadingProfile } =
-		useGetProfile();
+	const { handleLogin, error, loadingAuth } = useAuth();
+	const { handleGetProfile, loadingProfile, profile } = useGetProfile();
 	const navigate = useNavigate();
 
 	useEffect(() => {

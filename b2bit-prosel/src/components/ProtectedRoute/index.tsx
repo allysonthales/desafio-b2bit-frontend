@@ -1,14 +1,14 @@
 import {
 	cloneElement,
 	isValidElement,
-	useEffect,
 	type ReactElement,
+	useEffect,
 } from "react";
 import { Navigate } from "react-router";
-import { getToken } from "@/utils/token";
 import { useGetProfile } from "@/hooks/useGetProfile";
-import { SkeletonLogin } from "../Loading/SkeletonLogin";
 import type { ProfileProps } from "@/pages/Profile/Profile";
+import { getToken } from "@/utils/token";
+import { SkeletonLogin } from "../Loading/SkeletonLogin";
 
 export default function ProtectedRoute({
 	children,

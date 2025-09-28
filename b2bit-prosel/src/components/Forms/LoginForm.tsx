@@ -1,5 +1,9 @@
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { type LoginFormValues, loginFormSchema } from "@/types/forms/login";
+import { Button } from "../ui/button";
 import {
 	Form,
 	FormControl,
@@ -9,10 +13,6 @@ import {
 	FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
-import { loginFormSchema, type LoginFormValues } from "@/types/forms/login";
 
 interface LoginFormProps {
 	onSubmit: (email: string, password: string) => void;

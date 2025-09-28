@@ -1,8 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card";
+import type { ProfileResponse } from "@/api/profile/domain/types";
 import { Header } from "@/components/Header";
 import { PageWrapper } from "@/components/PageWrapper";
-import type { ProfileResponse } from "@/api/profile/domain/types";
 import { ProfileInfoItem } from "@/components/Profile/ProfileInfoItem";
+import { Card, CardContent } from "@/components/ui/card";
 
 export interface ProfileProps {
 	profile?: ProfileResponse;

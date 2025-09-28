@@ -1,8 +1,8 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Route, Routes } from "react-router";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
-import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
 	return (

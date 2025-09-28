@@ -1,8 +1,8 @@
-import { getProfile } from "@/api/profile/api/profile";
-import { loadingTime } from "@/utils/minLoading";
-import { useCallback, useState } from "react";
 import { AxiosError } from "axios";
+import { useCallback, useState } from "react";
+import { getProfile } from "@/api/profile/api/profile";
 import type { ProfileResponse } from "@/api/profile/domain/types";
+import { loadingTime } from "@/utils/minLoading";
 
 export function useGetProfile() {
 	const [loadingProfile, setLoadingProfile] = useState(false);

@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router";
 import { removeToken } from "@/utils/token";
 import { Button } from "../ui/button";
-import { useNavigate } from "react-router";
 
 export function Header() {
 	const navigate = useNavigate();
