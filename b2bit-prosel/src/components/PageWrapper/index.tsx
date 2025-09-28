@@ -10,7 +10,7 @@ export function PageWrapper({ children, className }: PageWrapperProps) {
 	return (
 		<main
 			className={cn(
-				"max-w-7xl flex flex-col items-center justify-center min-h-svh",
+				" flex flex-col items-center justify-center flex-1",
 				className,
 			)}
 		>

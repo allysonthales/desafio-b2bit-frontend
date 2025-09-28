@@ -65,6 +65,7 @@ export function LoginForm({ onSubmit, onClick }: LoginFormProps) {
 									placeholder="***************"
 									{...field}
 									type={showPassword ? "text" : "password"}
+									className="pr-12"
 								/>
 							</FormControl>
 							<button

@@ -9,7 +9,7 @@ export function Header() {
 		navigate("/");
 	}
 	return (
-		<header className="flex justify-end  px-4 py-4">
+		<header className="flex justify-end  px-4 py-4 bg-white">
 			<Button className="w-60 h-10 font-semibold" onClick={handleClick}>
 				Logout
 			</Button>
