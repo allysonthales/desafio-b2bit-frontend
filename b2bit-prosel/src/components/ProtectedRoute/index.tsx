@@ -9,6 +9,7 @@ import { useGetProfile } from "@/hooks/useGetProfile";
 import type { ProfileProps } from "@/pages/Profile/Profile";
 import { getToken } from "@/utils/token";
 import { SkeletonLogin } from "../Loading/SkeletonLogin";
+import { SkeletonProfile } from "../Loading/SkeletonProfile";
 
 export default function ProtectedRoute({
 	children,
@@ -29,7 +30,7 @@ export default function ProtectedRoute({
 	}
 
 	if (loadingProfile) {
-		return <SkeletonLogin />;
+		return <SkeletonProfile />;
 	}
 
 	if (error) {
