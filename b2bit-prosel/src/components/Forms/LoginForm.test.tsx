@@ -2,7 +2,7 @@
 
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it, vi } from "vitest"; 
+import { describe, expect, it, vi } from "vitest";
 import { LoginForm } from "./LoginForm";
 
 describe("LoginForm Component", () => {
@@ -47,23 +47,23 @@ describe("LoginForm Component", () => {
 
 	it("should toggle password visibility when the eye icon is clicked", async () => {
 		const user = userEvent.setup();
-		render(<LoginForm onSubmit={() => {}} />); 
+		render(<LoginForm onSubmit={() => {}} />);
 
 		const passwordInput = screen.getByLabelText(/password/i);
 		const toggleButton = screen
 			.getByRole("button", { name: "" })
-			.querySelector("svg"); 
+			.querySelector("svg");
 
 		expect(passwordInput).toHaveAttribute("type", "password");
 
-		if (toggleButton) {
-			await user.click(toggleButton.parentElement!);
+		if (toggleButton?.parentElement) {
+			await user.click(toggleButton.parentElement);
 		}
 
 		expect(passwordInput).toHaveAttribute("type", "text");
 
-		if (toggleButton) {
-			await user.click(toggleButton.parentElement!);
+		if (toggleButton?.parentElement) {
+			await user.click(toggleButton.parentElement);
 		}
 		expect(passwordInput).toHaveAttribute("type", "password");
 	});
@@ -77,7 +77,7 @@ describe("LoginForm Component", () => {
 		const submitButton = screen.getByRole("button", { name: /sing in/i });
 
 		await user.type(emailInput, "valido@email.com");
-		await user.type(passwordInput, "123"); 
+		await user.type(passwordInput, "123");
 		await user.click(submitButton);
 
 		const errorMessage = await screen.findByText(
