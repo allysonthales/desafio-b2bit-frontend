@@ -1,6 +1,4 @@
 import type { ProfileResponse } from "@/api/profile/domain/types";
-import { Header } from "@/components/Header";
-import { PageWrapper } from "@/components/PageWrapper";
 import { ProfileInfoItem } from "@/components/Profile/ProfileInfoItem";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -10,8 +8,9 @@ export interface ProfileProps {
 
 export default function Profile({ profile }: ProfileProps) {
 	if (!profile) return;
+
 	return (
-		<Card className="w-96 mx-auto">
+		<Card className="max-w-2xl shadow-2xl py-10 w-full">
 			<CardContent className="">
 				<figure className="space-y-2 flex flex-col items-center justify-center mb-4">
 					<figcaption className="text-xs">Profile picture</figcaption>

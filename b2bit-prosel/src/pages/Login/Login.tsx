@@ -19,9 +19,8 @@ export default function Login() {
 		const token = getToken("token");
 		if (token) {
 			handleGetProfile();
-			console.log(profile);
 		}
-	}, [handleGetProfile, profile]);
+	}, [handleGetProfile]);
 	useEffect(() => {
 		if (profile) {
 			navigate("/profile");
@@ -35,7 +34,7 @@ export default function Login() {
 	return (
 		<div className="container flex items-center justify-center min-h-screen mx-auto">
 			<PageWrapper className="px-4">
-				<Card className="max-w-2xl shadow-2xl py-10 w-full mx-2">
+				<Card className="max-w-2xl shadow-2xl py-10 w-full">
 					<CardHeader>
 						<CardTitle className="flex justify-center">
 							<img
