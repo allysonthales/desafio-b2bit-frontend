@@ -49,12 +49,10 @@ Este projeto inclui um **DevContainer** configurado para desenvolvimento em ambi
 Se você não quiser instalar os pré-requisitos (Node, pnpm, etc.) na sua máquina, basta abrir o projeto em um ambiente que suporte DevContainer.
 
 **Pré-requisito:**  
-Você só precisa ter o [Docker](https://www.docker.com/) 17.12.0 o mais recente instalado na sua máquina.
+Você só precisa ter o [Docker](https://www.docker.com/) 17.12.0 ou mais recente instalado na sua máquina.
 
 **Como usar:**
 - Abra o projeto e selecione "Reabrir no Container".
 - No VS Code, instale a extensão [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). 
 - CTRL + SHIFT + P e pesquise por reopen in container <img width="620" height="130" alt="image" src="https://github.com/user-attachments/assets/d0b7a4ef-7186-4306-8e28-cda3a11b6608" />
 - Todos os pré-requisitos já estarão disponíveis no ambiente isolado.
-
-Assim, você pode desenvolver e rodar o projeto sem instalar nada localmente!
