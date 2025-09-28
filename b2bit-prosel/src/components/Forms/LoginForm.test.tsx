@@ -50,21 +50,16 @@ describe("LoginForm Component", () => {
 		render(<LoginForm onSubmit={() => {}} />);
 
 		const passwordInput = screen.getByLabelText(/password/i);
-		const toggleButton = screen
-			.getByRole("button", { name: "" })
-			.querySelector("svg");
+		let toggleButton = screen.getByLabelText(/mostrar senha/i);
 
 		expect(passwordInput).toHaveAttribute("type", "password");
 
-		if (toggleButton?.parentElement) {
-			await user.click(toggleButton.parentElement);
-		}
+		await user.click(toggleButton);
 
 		expect(passwordInput).toHaveAttribute("type", "text");
 
-		if (toggleButton?.parentElement) {
-			await user.click(toggleButton.parentElement);
-		}
+		toggleButton = screen.getByLabelText(/ocultar senha/i);
+		await user.click(toggleButton);
 		expect(passwordInput).toHaveAttribute("type", "password");
 	});
 	it("should show validation error for short password", async () => {

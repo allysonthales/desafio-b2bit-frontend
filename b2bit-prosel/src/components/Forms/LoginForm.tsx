@@ -30,7 +30,7 @@ export function LoginForm({ onSubmit, onClick }: LoginFormProps) {
 	});
 
 	function handleShowPassword() {
-		setShowPassword(!showPassword);
+		setShowPassword((currentValue) => !currentValue);
 	}
 
 	return (
@@ -72,6 +72,7 @@ export function LoginForm({ onSubmit, onClick }: LoginFormProps) {
 								className="absolute right-3 top-1/2  text-gray-500 cursor-pointer p-2 "
 								type="button"
 								onClick={handleShowPassword}
+								aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
 							>
 								{showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
 							</button>
