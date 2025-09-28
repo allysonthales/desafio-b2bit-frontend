@@ -35,7 +35,7 @@ export default function Login() {
 
 	return (
 		<PageWrapper>
-			<Card className="max-w-lg flex-1 shadow-2xl py-14">
+			<Card className="max-w-lg shadow-2xl py-10 w-full">
 				<CardHeader>
 					<CardTitle className="flex justify-center">
 						<img src={logoImage} alt="b2bit" />
