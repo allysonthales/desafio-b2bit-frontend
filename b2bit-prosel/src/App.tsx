@@ -2,9 +2,9 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { ProfileLayout } from "./components/ProfileLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { ThemeProvider } from "./components/theme-provider";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
-import { ThemeProvider } from "./components/theme-provider";
 
 function App() {
 	return (

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { removeToken } from "@/utils/token";
-import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
+import { Button } from "../ui/button";
 
 export function Header() {
 	const navigate = useNavigate();

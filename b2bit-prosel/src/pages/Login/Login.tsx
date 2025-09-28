@@ -3,13 +3,13 @@ import { useNavigate } from "react-router";
 import { LoginForm } from "@/components/Forms/LoginForm";
 import { Loading } from "@/components/Loading/Loading";
 import { SkeletonLogin } from "@/components/Loading/SkeletonLogin";
+import { ModeToggle } from "@/components/mode-toggle";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { useGetProfile } from "@/hooks/useGetProfile";
 import { getToken } from "@/utils/token";
 import logoImage from "../../assets/B2Bit Logo.png";
-import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Login() {
 	const { handleLogin, error, loadingAuth } = useAuth();
